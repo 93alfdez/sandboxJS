@@ -1,15 +1,20 @@
+import {
+  numeroParaAcertar,
+  setNumeroParaAcertar,
+  NO_ES_UN_NUMERO,
+  EL_NUMERO_ES_MAYOR,
+  EL_NUMERO_ES_MENOR,
+  ES_EL_NUMERO_SECRETO,
+  GAME_OVER_MAXIMO_INTENTOS,
+  maximoIntentos,
+  numeroIntentos,
+  setNumeroIntentos,
+} from "./modelo";
+
 const generarNumeroAleatorio = () => Math.floor(Math.random() * 101);
 
-const numeroParaAcertar = generarNumeroAleatorio();
-
-const NO_ES_UN_NUMERO = 0;
-const EL_NUMERO_ES_MAYOR = 1;
-const EL_NUMERO_ES_MENOR = 2;
-const ES_EL_NUMERO_SECRETO = 3;
-const GAME_OVER_MAXIMO_INTENTOS = 4;
-
-const maximoIntentos = 5;
-let numeroIntentos = 0;
+// TO DO: esto se puede hacer mejor
+setNumeroParaAcertar(generarNumeroAleatorio());
 
 const hasSuperadoElNumeroDeIntentos = () => numeroIntentos > maximoIntentos;
 
@@ -77,7 +82,7 @@ const handleCompruebaClick = () => {
   const texto = document.getElementById("numero").value;
   const estado = comprobarNumero(texto);
   muestraMensajeComprobacion(texto, estado);
-  numeroIntentos++;
+  setNumeroIntentos(numeroIntentos + 1); //TODO: se podría haber implementado una función para incrementar el número de intentos
   muestraNumeroIntentos();
   gestionarGameOver(estado);
 };
